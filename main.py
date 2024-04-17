@@ -25,21 +25,22 @@ def user_interaction():
 							4 - получить список всех вакансий, у которых зарплата выше средней по всем вакансиям
 							5 - получить список всех вакансий, в которых содержатся ключевые слова, например 'python'
 							Другие команды завершат программу.\n""")
-		if user_input == '1':
-			print(DBManager.get_companies_and_vacancies_count(conn))
-		elif user_input == '2':
-			print(DBManager.get_all_vacancies(conn))
-		elif user_input == '3':
-			print(DBManager.get_avg_salary(conn))
-		elif user_input == '4':
-			print(DBManager.get_vacancies_with_higher_salary(conn))
-		elif user_input == '5':
-			word = input('Введите ключевое слово.\n')
-			print(DBManager.get_vacancies_with_keyword(conn, word))
-		else:
-			print('Программа завершена.')
-			DBManager.quit(conn)
-			break
+		match user_input:
+			case '1':
+				print(DBManager.get_companies_and_vacancies_count(conn))
+			case '2':
+				print(DBManager.get_all_vacancies(conn))
+			case '3':
+				print(DBManager.get_avg_salary(conn))
+			case '4':
+				print(DBManager.get_vacancies_with_higher_salary(conn))
+			case '5':
+				word = input('Введите ключевое слово.\n')
+				print(DBManager.get_vacancies_with_keyword(conn, word))
+			case _:
+				print('Программа завершена.')
+				DBManager.quit(conn)
+				break
 
 
 if __name__ == '__main__':
